@@ -1,379 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- REPLACE YOUR HERO HEADING WITH THIS -->
 
-<title>Lunara Health AI</title>
+<h1>
+Healthcare Experience
+</h1>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<!-- REPLACE YOUR GRID SECTION CSS WITH THIS -->
 
 <style>
-
-:root{
-
-/* LIGHT MODE */
-
---bg:#f5efe6;
---bg2:#e5d6c3;
-
---text:#4e4338;
-
---accent:#b89b79;
---accent2:#d7c2a7;
-
---card:rgba(255,255,255,0.18);
---border:rgba(255,255,255,0.28);
-
---shadow:0 10px 40px rgba(0,0,0,0.08);
-
---hero:
-linear-gradient(rgba(20,20,20,0.30),rgba(20,20,20,0.30)),
-url('https://images.unsplash.com/photo-1494390248081-4e521a5940db?q=80&w=1600&auto=format&fit=crop');
-
-}
-
-/* DARK MODE */
-
-body.dark{
-
---bg:#121212;
---bg2:#1f1d1a;
-
---text:#f3ece4;
-
---accent:#d3b18a;
---accent2:#9c7b5f;
-
---card:rgba(255,255,255,0.06);
---border:rgba(255,255,255,0.08);
-
---shadow:0 10px 40px rgba(0,0,0,0.45);
-
---hero:
-linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
-url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1600&auto=format&fit=crop');
-
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,var(--bg),var(--bg2));
-color:var(--text);
-overflow-x:hidden;
-transition:0.5s ease;
-}
-
-/* CUSTOM SCROLLBAR */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-track{
-background:transparent;
-}
-
-::-webkit-scrollbar-thumb{
-background:var(--accent);
-border-radius:20px;
-}
-
-/* BACKGROUND BLURS */
-
-.blur{
-position:fixed;
-border-radius:50%;
-filter:blur(100px);
-z-index:-1;
-opacity:0.35;
-animation:floatBlob 12s infinite ease-in-out;
-}
-
-.blur1{
-width:350px;
-height:350px;
-background:#c9b194;
-top:-120px;
-left:-120px;
-}
-
-.blur2{
-width:300px;
-height:300px;
-background:#e0ccb2;
-bottom:-100px;
-right:-100px;
-animation-delay:3s;
-}
-
-@keyframes floatBlob{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-30px);}
-100%{transform:translateY(0px);}
-}
-
-/* NAVBAR */
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:30px 70px;
-position:sticky;
-top:0;
-z-index:1000;
-
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(18px);
-
-border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.logo{
-font-size:1.7rem;
-font-weight:700;
-letter-spacing:1px;
-}
-
-/* DARK MODE TOGGLE */
-
-.toggle-wrapper{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.toggle-label{
-font-size:0.95rem;
-font-weight:500;
-}
-
-.toggle{
-width:75px;
-height:38px;
-background:rgba(255,255,255,0.15);
-border-radius:50px;
-position:relative;
-cursor:pointer;
-border:1px solid rgba(255,255,255,0.15);
-transition:0.4s;
-}
-
-.toggle::before{
-content:"";
-position:absolute;
-width:28px;
-height:28px;
-border-radius:50%;
-background:var(--accent);
-
-top:4px;
-left:5px;
-
-transition:0.4s;
-}
-
-body.dark .toggle::before{
-transform:translateX(35px);
-}
-
-/* HERO */
-
-.hero{
-width:92%;
-max-width:1350px;
-height:650px;
-
-margin:35px auto;
-
-border-radius:45px;
-
-overflow:hidden;
-
-position:relative;
-
-background:var(--hero);
-background-size:cover;
-background-position:center;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-text-align:center;
-
-box-shadow:var(--shadow);
-
-animation:heroReveal 1.2s ease;
-}
-
-.hero::after{
-content:"";
-position:absolute;
-inset:0;
-backdrop-filter:blur(2px);
-}
-
-.hero-content{
-position:relative;
-z-index:2;
-padding:20px;
-}
-
-.hero h1{
-font-size:5rem;
-color:white;
-margin-bottom:20px;
-
-opacity:0;
-
-animation:dropDown 1.2s ease forwards;
-}
-
-.hero p{
-max-width:760px;
-margin:auto;
-line-height:2;
-font-size:1.1rem;
-color:#f4ede6;
-
-opacity:0;
-
-animation:fadeUp 1.5s ease forwards;
-animation-delay:0.5s;
-}
-
-/* HERO BUTTON */
-
-.hero-btn{
-margin-top:35px;
-
-padding:16px 34px;
-
-border:none;
-
-border-radius:40px;
-
-background:rgba(255,255,255,0.14);
-
-backdrop-filter:blur(14px);
-
-color:white;
-
-font-size:1rem;
-
-cursor:pointer;
-
-border:1px solid rgba(255,255,255,0.25);
-
-transition:0.4s;
-}
-
-.hero-btn:hover{
-transform:translateY(-6px) scale(1.04);
-background:rgba(255,255,255,0.22);
-}
-
-/* ANIMATIONS */
-
-@keyframes heroReveal{
-from{
-opacity:0;
-transform:scale(0.96);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
-
-@keyframes dropDown{
-0%{
-opacity:0;
-transform:translateY(-120px);
-}
-100%{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes fadeUp{
-0%{
-opacity:0;
-transform:translateY(40px);
-}
-100%{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* GLASS SECTION */
-
-.glass{
-width:90%;
-max-width:1150px;
-
-margin:80px auto;
-
-padding:60px;
-
-border-radius:35px;
-
-background:var(--card);
-
-border:1px solid var(--border);
-
-backdrop-filter:blur(18px);
-
-box-shadow:var(--shadow);
-
-transition:0.5s;
-}
-
-.glass:hover{
-transform:translateY(-10px);
-}
-
-.glass h2{
-font-size:2rem;
-margin-bottom:22px;
-}
-
-.glass p{
-line-height:2;
-opacity:0.9;
-}
-
-/* PINTEREST GRID */
 
 .grid{
 width:92%;
 max-width:1300px;
-
 margin:70px auto;
 
-columns:3 280px;
-column-gap:24px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:28px;
 }
 
 .card{
 background:var(--card);
 
-border:1px solid var(--border);
+border:2px solid transparent;
 
 backdrop-filter:blur(16px);
 
@@ -381,115 +31,133 @@ border-radius:30px;
 
 overflow:hidden;
 
-margin-bottom:24px;
-
-break-inside:avoid;
-
 box-shadow:var(--shadow);
 
-transition:0.5s;
+transition:0.5s ease;
+
 cursor:pointer;
+
+position:relative;
+}
+
+.card::before{
+content:"";
+
+position:absolute;
+
+inset:0;
+
+border-radius:30px;
+
+padding:2px;
+
+background:linear-gradient(
+135deg,
+transparent,
+rgba(255,255,255,0.4),
+var(--accent),
+transparent
+);
+
+-webkit-mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+
+-webkit-mask-composite:xor;
+
+mask-composite:exclude;
+
+opacity:0;
+
+transition:0.5s;
+}
+
+.card:hover::before{
+opacity:1;
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.02);
+transform:translateY(-12px) scale(1.02);
+border-color:var(--accent);
 }
 
 .card img{
 width:100%;
-display:block;
-transition:0.8s;
+height:260px;
+object-fit:cover;
+
+transition:0.8s ease;
 }
 
 .card:hover img{
-transform:scale(1.05);
+transform:scale(1.08);
+filter:brightness(1.05);
 }
 
 .card-content{
-padding:22px;
+padding:24px;
 }
 
 .card-content h3{
 margin-bottom:12px;
+font-size:1.15rem;
 }
 
 .card-content p{
 line-height:1.8;
-font-size:0.94rem;
+font-size:0.95rem;
 opacity:0.82;
 }
 
-/* STATS SECTION */
+/* FLOATING ANIMATION */
 
-.stats{
-width:92%;
-max-width:1200px;
-
-margin:90px auto;
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-gap:24px;
+.card{
+animation:floatCard 5s ease-in-out infinite;
 }
 
-.stat-box{
-background:var(--card);
-
-border:1px solid var(--border);
-
-backdrop-filter:blur(14px);
-
-padding:40px;
-
-border-radius:30px;
-
-text-align:center;
-
-box-shadow:var(--shadow);
-
-transition:0.5s;
+.card:nth-child(2){
+animation-delay:1s;
 }
 
-.stat-box:hover{
+.card:nth-child(3){
+animation-delay:2s;
+}
+
+.card:nth-child(4){
+animation-delay:3s;
+}
+
+.card:nth-child(5){
+animation-delay:4s;
+}
+
+@keyframes floatCard{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
 transform:translateY(-8px);
 }
 
-.stat-box h1{
-font-size:3rem;
-margin-bottom:10px;
-color:var(--accent);
+100%{
+transform:translateY(0px);
 }
 
-/* CONTACT */
-
-.contact{
-width:90%;
-max-width:1050px;
-
-margin:80px auto;
-
-padding:55px;
-
-background:var(--card);
-
-border:1px solid var(--border);
-
-backdrop-filter:blur(18px);
-
-border-radius:35px;
-
-box-shadow:var(--shadow);
 }
 
-.contact h2{
-margin-bottom:28px;
-}
+</style>
 
-/* INPUTS */
+
+
+<!-- REPLACE YOUR INPUT CSS WITH THIS -->
+
+<style>
 
 .input-box{
-margin-bottom:22px;
+margin-bottom:24px;
+position:relative;
 }
 
 .input-box input,
@@ -497,11 +165,11 @@ margin-bottom:22px;
 
 width:100%;
 
-padding:18px;
+padding:18px 20px;
 
 border-radius:22px;
 
-border:1px solid rgba(255,255,255,0.15);
+border:2px solid transparent;
 
 background:rgba(255,255,255,0.12);
 
@@ -515,12 +183,23 @@ font-family:'Poppins',sans-serif;
 
 color:var(--text);
 
-transition:0.4s;
+transition:0.45s ease;
+
+position:relative;
 }
 
 .input-box input::placeholder,
 .input-box textarea::placeholder{
-color:rgba(100,100,100,0.75);
+color:rgba(120,120,120,0.8);
+}
+
+.input-box input:hover,
+.input-box textarea:hover{
+
+border-color:rgba(255,255,255,0.25);
+
+background:rgba(255,255,255,0.16);
+
 }
 
 .input-box input:focus,
@@ -528,9 +207,11 @@ color:rgba(100,100,100,0.75);
 
 border-color:var(--accent);
 
-background:rgba(255,255,255,0.18);
+background:rgba(255,255,255,0.20);
 
-box-shadow:0 0 18px rgba(255,255,255,0.12);
+box-shadow:
+0 0 15px rgba(255,255,255,0.08),
+0 0 25px rgba(184,155,121,0.25);
 
 transform:scale(1.01);
 
@@ -541,377 +222,172 @@ min-height:150px;
 resize:none;
 }
 
-/* BUTTON */
+/* INPUT GLOW ANIMATION */
 
-.send-btn{
-padding:16px 34px;
+.input-box::after{
 
-border:none;
+content:"";
 
-border-radius:40px;
+position:absolute;
 
-background:var(--accent);
+left:50%;
+bottom:-2px;
 
-color:white;
+width:0%;
 
-cursor:pointer;
+height:2px;
 
-font-size:1rem;
+background:linear-gradient(
+90deg,
+transparent,
+var(--accent),
+transparent
+);
 
-transition:0.4s;
+transition:0.5s ease;
+
+transform:translateX(-50%);
 }
 
-.send-btn:hover{
-transform:translateY(-5px);
-background:var(--accent2);
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:50px;
-opacity:0.75;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-nav{
-padding:22px;
-}
-
-.hero{
-height:540px;
-}
-
-.hero h1{
-font-size:2.8rem;
-}
-
-.glass,
-.contact{
-padding:30px;
-}
-
+.input-box:hover::after{
+width:90%;
 }
 
 </style>
-</head>
 
-<body>
 
-<!-- BACKGROUND BLOBS -->
 
-<div class="blur blur1"></div>
-<div class="blur blur2"></div>
+<!-- ADD THIS EXTRA ANIMATION CSS BELOW YOUR EXISTING CSS -->
 
-<!-- NAVBAR -->
+<style>
 
-<nav>
+/* HERO BUTTON GLOW */
 
-<div class="logo">
-Lunara Health AI
-</div>
-
-<div class="toggle-wrapper">
-
-<span class="toggle-label">
-Dark Mode
-</span>
-
-<div class="toggle" onclick="toggleDarkMode()"></div>
-
-</div>
-
-</nav>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="hero-content">
-
-<h1>
-Aesthetic Healthcare Experience
-</h1>
-
-<p>
-
-AI-powered wellness interaction designed with cinematic visuals, Pinterest-inspired layouts, premium glassmorphism, soft hover animations, and modern healthcare aesthetics.
-
-</p>
-
-<button class="hero-btn">
-Explore Experience
-</button>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section class="glass">
-
-<h2>
-Modern Healthcare Meets Elegant Design
-</h2>
-
-<p>
-
-Lunara AI creates a calming digital healthcare environment with intelligent interaction, aesthetic layouts, soft motion effects, and immersive visual storytelling.
-
-Inspired by luxury wellness brands and editorial Pinterest layouts, the experience adapts beautifully between dark and light modes while maintaining a premium feel.
-
-</p>
-
-</section>
-
-<!-- PINTEREST GRID -->
-
-<section class="grid">
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>
-Digital Wellness
-</h3>
-
-<p>
-Soft healthcare experiences designed for intelligent wellness support.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>
-Clinical Simplicity
-</h3>
-
-<p>
-Modern healthcare visuals with elegant interaction design and calm aesthetics.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>
-AI Assistance
-</h3>
-
-<p>
-Interactive healthcare support powered through intelligent digital systems.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>
-Wellness Monitoring
-</h3>
-
-<p>
-Premium healthcare dashboards inspired by editorial and Pinterest layouts.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1580281657527-47f249e8f4df?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>
-Health Insights
-</h3>
-
-<p>
-Designed with floating cards, glassmorphism, and immersive visual storytelling.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>
-Calming Experience
-</h3>
-
-<p>
-Elegant healthcare interaction crafted for modern digital wellness experiences.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- STATS -->
-
-<section class="stats">
-
-<div class="stat-box">
-
-<h1>
-24/7
-</h1>
-
-<p>
-AI Wellness Support
-</p>
-
-</div>
-
-<div class="stat-box">
-
-<h1>
-98%
-</h1>
-
-<p>
-User Satisfaction
-</p>
-
-</div>
-
-<div class="stat-box">
-
-<h1>
-50K+
-</h1>
-
-<p>
-Health Interactions
-</p>
-
-</div>
-
-<div class="stat-box">
-
-<h1>
-100+
-</h1>
-
-<p>
-Wellness Insights
-</p>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact">
-
-<h2>
-Talk With Lunara AI
-</h2>
-
-<div class="input-box">
-<input type="text" placeholder="Enter your name">
-</div>
-
-<div class="input-box">
-<input type="email" placeholder="Enter your email">
-</div>
-
-<div class="input-box">
-<textarea placeholder="Describe your healthcare concern"></textarea>
-</div>
-
-<button class="send-btn">
-Send Message
-</button>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-Designed for modern aesthetic healthcare experiences
-
-</footer>
-
-<!-- DARK MODE -->
-
-<script>
-
-function toggleDarkMode(){
-document.body.classList.toggle("dark");
+.hero-btn{
+position:relative;
+overflow:hidden;
 }
 
-</script>
+.hero-btn::before{
 
-<!-- IBM WATSON ASSISTANT -->
+content:"";
 
-<script>
+position:absolute;
 
-window.watsonAssistantChatOptions = {
+top:0;
+left:-120%;
 
-integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
+width:100%;
+height:100%;
 
-region: "eu-de",
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.4),
+transparent
+);
 
-serviceInstanceID: "f3f2da03-ddee-4da0-b22f-2a7277620229",
-
-onLoad: async (instance) => {
-
-await instance.render();
-
+transition:0.7s;
 }
 
-};
+.hero-btn:hover::before{
+left:120%;
+}
 
-setTimeout(function(){
+/* NAVBAR HOVER */
 
-const t=document.createElement('script');
+.logo{
+transition:0.4s;
+cursor:pointer;
+}
 
-t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+.logo:hover{
+letter-spacing:2px;
+color:var(--accent);
+}
 
-document.body.appendChild(t);
+/* STAT BOX ANIMATION */
 
-});
+.stat-box{
+position:relative;
+overflow:hidden;
+}
 
-</script>
+.stat-box::before{
 
-</body>
-</html>
+content:"";
+
+position:absolute;
+
+width:180%;
+height:180%;
+
+background:radial-gradient(
+circle,
+rgba(255,255,255,0.12),
+transparent 60%
+);
+
+top:-120%;
+left:-120%;
+
+transition:0.8s;
+}
+
+.stat-box:hover::before{
+top:-40%;
+left:-40%;
+}
+
+.stat-box:hover{
+border-color:var(--accent);
+}
+
+/* CONTACT SECTION HOVER */
+
+.contact{
+transition:0.5s ease;
+}
+
+.contact:hover{
+transform:translateY(-8px);
+border-color:var(--accent);
+}
+
+/* GLASS SECTION HOVER */
+
+.glass{
+position:relative;
+overflow:hidden;
+}
+
+.glass::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+left:-100%;
+
+width:220%;
+height:220%;
+
+background:linear-gradient(
+135deg,
+transparent,
+rgba(255,255,255,0.06),
+transparent
+);
+
+transform:rotate(20deg);
+
+transition:1s;
+}
+
+.glass:hover::before{
+top:0;
+left:0;
+}
+
+</style>
