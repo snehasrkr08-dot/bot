@@ -1,26 +1,499 @@
-<!-- REPLACE YOUR HERO HEADING WITH THIS -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<h1>
-Healthcare Experience
-</h1>
+<title>Lunara Health AI</title>
 
-
-
-<!-- REPLACE YOUR GRID SECTION CSS WITH THIS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+:root{
+
+--bg:#f5efe6;
+--bg2:#e4d6c4;
+
+--text:#4f4438;
+
+--accent:#b89b79;
+--accent2:#d5c1a7;
+
+--card:rgba(255,255,255,0.16);
+--border:rgba(255,255,255,0.22);
+
+--shadow:0 10px 40px rgba(0,0,0,0.08);
+
+--hero:
+linear-gradient(rgba(20,20,20,0.35),rgba(20,20,20,0.35)),
+url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop');
+
+}
+
+/* DARK MODE */
+
+body.dark{
+
+--bg:#121212;
+--bg2:#1d1b19;
+
+--text:#f5ede5;
+
+--accent:#d4b18b;
+--accent2:#9f7f62;
+
+--card:rgba(255,255,255,0.05);
+--border:rgba(255,255,255,0.08);
+
+--shadow:0 10px 40px rgba(0,0,0,0.45);
+
+--hero:
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+url('https://images.unsplash.com/photo-1494390248081-4e521a5940db?q=80&w=1600&auto=format&fit=crop');
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,var(--bg),var(--bg2));
+color:var(--text);
+overflow-x:hidden;
+transition:0.5s ease;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:var(--accent);
+border-radius:20px;
+}
+
+/* BACKGROUND BLOBS */
+
+.blur{
+position:fixed;
+border-radius:50%;
+filter:blur(100px);
+z-index:-1;
+opacity:0.35;
+animation:floatBlob 12s infinite ease-in-out;
+}
+
+.blur1{
+width:350px;
+height:350px;
+background:#d4bea2;
+top:-120px;
+left:-120px;
+}
+
+.blur2{
+width:300px;
+height:300px;
+background:#e7d6c1;
+bottom:-100px;
+right:-100px;
+animation-delay:3s;
+}
+
+@keyframes floatBlob{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-25px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* NAVBAR */
+
+nav{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:28px 70px;
+
+position:sticky;
+top:0;
+
+z-index:1000;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,0.08);
+
+}
+
+.logo{
+font-size:1.7rem;
+font-weight:700;
+letter-spacing:1px;
+transition:0.4s;
+cursor:pointer;
+}
+
+.logo:hover{
+letter-spacing:2px;
+color:var(--accent);
+}
+
+/* TOGGLE */
+
+.toggle-wrapper{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.toggle-label{
+font-size:0.95rem;
+font-weight:500;
+}
+
+.toggle{
+
+width:75px;
+height:38px;
+
+background:rgba(255,255,255,0.16);
+
+border-radius:50px;
+
+position:relative;
+
+cursor:pointer;
+
+border:1px solid rgba(255,255,255,0.18);
+
+transition:0.4s;
+}
+
+.toggle::before{
+
+content:"";
+
+position:absolute;
+
+width:28px;
+height:28px;
+
+border-radius:50%;
+
+background:var(--accent);
+
+top:4px;
+left:5px;
+
+transition:0.4s;
+}
+
+body.dark .toggle::before{
+transform:translateX(35px);
+}
+
+/* HERO */
+
+.hero{
+
+width:92%;
+max-width:1350px;
+
+height:650px;
+
+margin:35px auto;
+
+border-radius:45px;
+
+overflow:hidden;
+
+position:relative;
+
+background:var(--hero);
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+box-shadow:var(--shadow);
+
+animation:heroReveal 1.2s ease;
+}
+
+.hero::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+backdrop-filter:blur(2px);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+padding:20px;
+}
+
+.hero h1{
+
+font-size:5rem;
+
+color:white;
+
+margin-bottom:20px;
+
+opacity:0;
+
+animation:dropDown 1.2s ease forwards;
+}
+
+.hero p{
+
+max-width:760px;
+
+margin:auto;
+
+line-height:2;
+
+font-size:1.1rem;
+
+color:#f5ede4;
+
+opacity:0;
+
+animation:fadeUp 1.5s ease forwards;
+
+animation-delay:0.5s;
+}
+
+/* HERO BUTTON */
+
+.hero-btn{
+
+margin-top:35px;
+
+padding:16px 34px;
+
+border:none;
+
+border-radius:40px;
+
+background:rgba(255,255,255,0.14);
+
+backdrop-filter:blur(14px);
+
+color:white;
+
+font-size:1rem;
+
+cursor:pointer;
+
+border:1px solid rgba(255,255,255,0.25);
+
+transition:0.4s;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.hero-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.4),
+transparent
+);
+
+transition:0.7s;
+}
+
+.hero-btn:hover::before{
+left:120%;
+}
+
+.hero-btn:hover{
+transform:translateY(-6px) scale(1.04);
+}
+
+/* ANIMATIONS */
+
+@keyframes heroReveal{
+
+from{
+opacity:0;
+transform:scale(0.96);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+@keyframes dropDown{
+
+0%{
+opacity:0;
+transform:translateY(-120px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes fadeUp{
+
+0%{
+opacity:0;
+transform:translateY(40px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* GLASS SECTION */
+
+.glass{
+
+width:90%;
+max-width:1150px;
+
+margin:80px auto;
+
+padding:60px;
+
+border-radius:35px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(18px);
+
+box-shadow:var(--shadow);
+
+transition:0.5s;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.glass::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+left:-100%;
+
+width:220%;
+height:220%;
+
+background:linear-gradient(
+135deg,
+transparent,
+rgba(255,255,255,0.06),
+transparent
+);
+
+transform:rotate(20deg);
+
+transition:1s;
+}
+
+.glass:hover::before{
+top:0;
+left:0;
+}
+
+.glass:hover{
+transform:translateY(-10px);
+}
+
+.glass h2{
+font-size:2rem;
+margin-bottom:22px;
+}
+
+.glass p{
+line-height:2;
+opacity:0.9;
+}
+
+/* GRID */
+
 .grid{
+
 width:92%;
 max-width:1300px;
+
 margin:70px auto;
 
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
 gap:28px;
 }
 
 .card{
+
 background:var(--card);
 
 border:2px solid transparent;
@@ -38,9 +511,28 @@ transition:0.5s ease;
 cursor:pointer;
 
 position:relative;
+
+animation:floatCard 5s ease-in-out infinite;
+}
+
+.card:nth-child(2){
+animation-delay:1s;
+}
+
+.card:nth-child(3){
+animation-delay:2s;
+}
+
+.card:nth-child(4){
+animation-delay:3s;
+}
+
+.card:nth-child(5){
+animation-delay:4s;
 }
 
 .card::before{
+
 content:"";
 
 position:absolute;
@@ -78,12 +570,13 @@ opacity:1;
 
 .card:hover{
 transform:translateY(-12px) scale(1.02);
-border-color:var(--accent);
 }
 
 .card img{
+
 width:100%;
 height:260px;
+
 object-fit:cover;
 
 transition:0.8s ease;
@@ -109,28 +602,6 @@ font-size:0.95rem;
 opacity:0.82;
 }
 
-/* FLOATING ANIMATION */
-
-.card{
-animation:floatCard 5s ease-in-out infinite;
-}
-
-.card:nth-child(2){
-animation-delay:1s;
-}
-
-.card:nth-child(3){
-animation-delay:2s;
-}
-
-.card:nth-child(4){
-animation-delay:3s;
-}
-
-.card:nth-child(5){
-animation-delay:4s;
-}
-
 @keyframes floatCard{
 
 0%{
@@ -147,169 +618,42 @@ transform:translateY(0px);
 
 }
 
-</style>
+/* STATS */
 
+.stats{
 
+width:92%;
+max-width:1200px;
 
-<!-- REPLACE YOUR INPUT CSS WITH THIS -->
+margin:90px auto;
 
-<style>
+display:grid;
 
-.input-box{
-margin-bottom:24px;
-position:relative;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:24px;
 }
 
-.input-box input,
-.input-box textarea{
+.stat-box{
 
-width:100%;
+background:var(--card);
 
-padding:18px 20px;
-
-border-radius:22px;
-
-border:2px solid transparent;
-
-background:rgba(255,255,255,0.12);
+border:1px solid var(--border);
 
 backdrop-filter:blur(14px);
 
-outline:none;
+padding:40px;
 
-font-size:1rem;
+border-radius:30px;
 
-font-family:'Poppins',sans-serif;
+text-align:center;
 
-color:var(--text);
+box-shadow:var(--shadow);
 
-transition:0.45s ease;
+transition:0.5s;
 
 position:relative;
-}
 
-.input-box input::placeholder,
-.input-box textarea::placeholder{
-color:rgba(120,120,120,0.8);
-}
-
-.input-box input:hover,
-.input-box textarea:hover{
-
-border-color:rgba(255,255,255,0.25);
-
-background:rgba(255,255,255,0.16);
-
-}
-
-.input-box input:focus,
-.input-box textarea:focus{
-
-border-color:var(--accent);
-
-background:rgba(255,255,255,0.20);
-
-box-shadow:
-0 0 15px rgba(255,255,255,0.08),
-0 0 25px rgba(184,155,121,0.25);
-
-transform:scale(1.01);
-
-}
-
-textarea{
-min-height:150px;
-resize:none;
-}
-
-/* INPUT GLOW ANIMATION */
-
-.input-box::after{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-bottom:-2px;
-
-width:0%;
-
-height:2px;
-
-background:linear-gradient(
-90deg,
-transparent,
-var(--accent),
-transparent
-);
-
-transition:0.5s ease;
-
-transform:translateX(-50%);
-}
-
-.input-box:hover::after{
-width:90%;
-}
-
-</style>
-
-
-
-<!-- ADD THIS EXTRA ANIMATION CSS BELOW YOUR EXISTING CSS -->
-
-<style>
-
-/* HERO BUTTON GLOW */
-
-.hero-btn{
-position:relative;
-overflow:hidden;
-}
-
-.hero-btn::before{
-
-content:"";
-
-position:absolute;
-
-top:0;
-left:-120%;
-
-width:100%;
-height:100%;
-
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.4),
-transparent
-);
-
-transition:0.7s;
-}
-
-.hero-btn:hover::before{
-left:120%;
-}
-
-/* NAVBAR HOVER */
-
-.logo{
-transition:0.4s;
-cursor:pointer;
-}
-
-.logo:hover{
-letter-spacing:2px;
-color:var(--accent);
-}
-
-/* STAT BOX ANIMATION */
-
-.stat-box{
-position:relative;
 overflow:hidden;
 }
 
@@ -340,13 +684,38 @@ left:-40%;
 }
 
 .stat-box:hover{
+transform:translateY(-8px);
 border-color:var(--accent);
 }
 
-/* CONTACT SECTION HOVER */
+.stat-box h1{
+font-size:3rem;
+margin-bottom:10px;
+color:var(--accent);
+}
+
+/* CONTACT */
 
 .contact{
-transition:0.5s ease;
+
+width:90%;
+max-width:1050px;
+
+margin:80px auto;
+
+padding:55px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(18px);
+
+border-radius:35px;
+
+box-shadow:var(--shadow);
+
+transition:0.5s;
 }
 
 .contact:hover{
@@ -354,40 +723,476 @@ transform:translateY(-8px);
 border-color:var(--accent);
 }
 
-/* GLASS SECTION HOVER */
-
-.glass{
-position:relative;
-overflow:hidden;
+.contact h2{
+margin-bottom:28px;
 }
 
-.glass::before{
+/* INPUTS */
+
+.input-box{
+margin-bottom:24px;
+position:relative;
+}
+
+.input-box input,
+.input-box textarea{
+
+width:100%;
+
+padding:18px 20px;
+
+border-radius:22px;
+
+border:2px solid transparent;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(14px);
+
+outline:none;
+
+font-size:1rem;
+
+font-family:'Poppins',sans-serif;
+
+color:var(--text);
+
+transition:0.45s ease;
+}
+
+.input-box input::placeholder,
+.input-box textarea::placeholder{
+color:rgba(120,120,120,0.8);
+}
+
+.input-box input:hover,
+.input-box textarea:hover{
+
+border-color:rgba(255,255,255,0.25);
+
+background:rgba(255,255,255,0.16);
+}
+
+.input-box input:focus,
+.input-box textarea:focus{
+
+border-color:var(--accent);
+
+background:rgba(255,255,255,0.20);
+
+box-shadow:
+0 0 15px rgba(255,255,255,0.08),
+0 0 25px rgba(184,155,121,0.25);
+
+transform:scale(1.01);
+}
+
+textarea{
+min-height:150px;
+resize:none;
+}
+
+.input-box::after{
 
 content:"";
 
 position:absolute;
 
-top:-100%;
-left:-100%;
+left:50%;
+bottom:-2px;
 
-width:220%;
-height:220%;
+width:0%;
+
+height:2px;
 
 background:linear-gradient(
-135deg,
+90deg,
 transparent,
-rgba(255,255,255,0.06),
+var(--accent),
 transparent
 );
 
-transform:rotate(20deg);
+transition:0.5s ease;
 
-transition:1s;
+transform:translateX(-50%);
 }
 
-.glass:hover::before{
-top:0;
-left:0;
+.input-box:hover::after{
+width:90%;
+}
+
+/* SEND BUTTON */
+
+.send-btn{
+
+padding:16px 34px;
+
+border:none;
+
+border-radius:40px;
+
+background:var(--accent);
+
+color:white;
+
+cursor:pointer;
+
+font-size:1rem;
+
+transition:0.4s;
+}
+
+.send-btn:hover{
+transform:translateY(-5px);
+background:var(--accent2);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:50px;
+opacity:0.75;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+nav{
+padding:22px;
+}
+
+.hero{
+height:540px;
+}
+
+.hero h1{
+font-size:2.8rem;
+}
+
+.glass,
+.contact{
+padding:30px;
+}
+
 }
 
 </style>
+</head>
+
+<body>
+
+<!-- BACKGROUND BLOBS -->
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+Lunara Health AI
+</div>
+
+<div class="toggle-wrapper">
+
+<span class="toggle-label">
+Dark Mode
+</span>
+
+<div class="toggle" onclick="toggleDarkMode()"></div>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Healthcare Experience
+</h1>
+
+<p>
+
+AI-powered wellness interaction designed with cinematic visuals, Pinterest-inspired layouts, premium glassmorphism, soft hover animations, and modern healthcare aesthetics.
+
+</p>
+
+<button class="hero-btn">
+Explore Experience
+</button>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="glass">
+
+<h2>
+Modern Healthcare Meets Elegant Design
+</h2>
+
+<p>
+
+Lunara AI creates a calming digital healthcare environment with intelligent interaction, aesthetic layouts, soft motion effects, and immersive visual storytelling.
+
+Inspired by luxury wellness brands and editorial Pinterest layouts, the experience adapts beautifully between dark and light modes while maintaining a premium feel.
+
+</p>
+
+</section>
+
+<!-- GRID -->
+
+<section class="grid">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Digital Wellness
+</h3>
+
+<p>
+Soft healthcare experiences designed for intelligent wellness support.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Clinical Simplicity
+</h3>
+
+<p>
+Modern healthcare visuals with elegant interaction design and calm aesthetics.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+AI Assistance
+</h3>
+
+<p>
+Interactive healthcare support powered through intelligent digital systems.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Wellness Monitoring
+</h3>
+
+<p>
+Premium healthcare dashboards inspired by editorial and Pinterest layouts.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1580281657527-47f249e8f4df?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Health Insights
+</h3>
+
+<p>
+Designed with floating cards, glassmorphism, and immersive visual storytelling.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Calming Experience
+</h3>
+
+<p>
+Elegant healthcare interaction crafted for modern digital wellness experiences.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="stat-box">
+
+<h1>
+24/7
+</h1>
+
+<p>
+AI Wellness Support
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h1>
+98%
+</h1>
+
+<p>
+User Satisfaction
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h1>
+50K+
+</h1>
+
+<p>
+Health Interactions
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h1>
+100+
+</h1>
+
+<p>
+Wellness Insights
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+<h2>
+Talk With Lunara AI
+</h2>
+
+<div class="input-box">
+<input type="text" placeholder="Enter your name">
+</div>
+
+<div class="input-box">
+<input type="email" placeholder="Enter your email">
+</div>
+
+<div class="input-box">
+<textarea placeholder="Describe your healthcare concern"></textarea>
+</div>
+
+<button class="send-btn">
+Send Message
+</button>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+Designed for modern healthcare experiences
+
+</footer>
+
+<!-- DARK MODE -->
+
+<script>
+
+function toggleDarkMode(){
+document.body.classList.toggle("dark");
+}
+
+</script>
+
+<!-- IBM WATSON ASSISTANT -->
+
+<script>
+
+window.watsonAssistantChatOptions = {
+
+integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
+
+region: "eu-de",
+
+serviceInstanceID: "f3f2da03-ddee-4da0-b22f-2a7277620229",
+
+onLoad: async (instance) => {
+
+await instance.render();
+
+}
+
+};
+
+setTimeout(function(){
+
+const t=document.createElement('script');
+
+t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+
+document.body.appendChild(t);
+
+});
+
+</script>
+
+</body>
+</html>
