@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunara AI ✨</title>
+
+<style>
+:root{
+  --bg:#0f172a;
+  --bg2:#1e3a8a;
+  --text:#ffffff;
+  --accent:#7dd3fc;
+  --card:rgba(255,255,255,0.08);
+  --pink:#f9a8d4;
+}
+
+body.light{
+  --bg:#fdf4ff;
+  --bg2:#dbeafe;
+  --text:#1e293b;
+  --card:rgba(255,255,255,0.75);
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,var(--bg),var(--bg2));
+  color:var(--text);
+  transition:0.4s;
+  overflow-x:hidden;
+}
+
+/* TOP BAR */
+.top-strip{
+  text-align:center;
+  padding:8px;
+  font-size:0.75rem;
+  letter-spacing:1px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+}
+
+/* TOGGLE */
+.toggle-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.switch{
+  width:52px;
+  height:25px;
+  position:relative;
+}
+
+.switch input{
+  display:none;
+}
+
+.slider{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#cbd5e1;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.slider::before{
+  content:"";
+  position:absolute;
+  width:19px;
+  height:19px;
+  background:white;
+  border-radius:50%;
+  top:3px;
+  left:3px;
+  transition:0.3s;
+}
+
+input:checked + .slider{
+  background:var(--accent);
+}
+
+input:checked + .slider::before{
+  transform:translateX(27px);
+}
+
+.toggle-text{
+  font-size:0.7rem;
+  margin-top:4px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:60px 20px 30px;
+}
+
+.hero h1{
+  font-size:3.4rem;
+  margin-bottom:8px;
+  animation:drop 1s ease;
+}
+
+.subtitle{
+  color:#c4b5fd;
+  font-size:1rem;
+}
+
+.quote{
+  margin-top:8px;
+  font-style:italic;
+  color:#bfdbfe;
+}
+
+@keyframes drop{
+  from{
+    opacity:0;
+    transform:translateY(-50px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* PARALLAX IMAGE */
+.hero-img{
+  height:340px;
+  background:
+  linear-gradient(rgba(15,23,42,0.3),rgba(15,23,42,0.3)),
+  url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1400')
+  center/cover fixed;
+}
+
+/* OVERLAY CARD */
+.overlay-card{
+  max-width:1050px;
+  margin:-90px auto 40px;
+  padding:40px;
+  border-radius:28px;
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,0.25);
+  transition:0.4s;
+}
+
+.overlay-card:hover{
+  transform:translateY(-8px);
+  border:1px solid var(--pink);
+}
+
+.overlay-card h2{
+  font-size:2rem;
+}
+
+.highlight{
+  color:#f9a8d4;
+}
+
+.overlay-card p{
+  line-height:1.8;
+  max-width:850px;
+  margin:auto;
+}
+
+/* IMAGE CARDS */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  padding:40px;
+}
+
+.image-card{
+  background:var(--card);
+  border-radius:20px;
+  overflow:hidden;
+  transition:0.4s;
+  border:1px solid transparent;
+}
+
+.image-card:hover{
+  transform:translateY(-8px);
+  border:1px solid var(--accent);
+  box-shadow:0 0 18px rgba(125,211,252,0.35);
+}
+
+.image-card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+}
+
+.caption{
+  padding:14px;
+}
+
+.tags{
+  margin-top:8px;
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 10px;
+  margin:4px;
+  border-radius:14px;
+  font-size:0.7rem;
+  background:rgba(255,255,255,0.12);
+}
+
+/* FEATURE BOXES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:40px;
+}
+
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:22px;
+  text-align:center;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border:1px solid var(--pink);
+}
+
+/* FINAL INFO BOX */
+.info-box{
+  max-width:1000px;
+  margin:20px auto 60px;
+  padding:35px;
+  border-radius:24px;
+  background:var(--card);
+  backdrop-filter:blur(16px);
+  text-align:center;
+  transition:0.4s;
+}
+
+.info-box:hover{
+  transform:translateY(-6px);
+  border:1px solid var(--accent);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+💙 AI-powered wellness assistant • Smart • Calm • Interactive
+</div>
+
+<!-- NAV -->
+<nav>
+  <div><b>Lunara AI ✨</b></div>
+
+  <div class="toggle-wrapper">
+    <label class="switch">
+      <input type="checkbox" onclick="toggleMode()">
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-text">Light mode</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Lunara AI ✨</h1>
+  <p class="subtitle">Your intelligent wellness and medical interpretation companion</p>
+  <p class="quote">“Technology feels best when it understands humans.” 💫</p>
+</section>
+
+<!-- IMAGE -->
+<div class="hero-img"></div>
+
+<!-- OVERLAY -->
+<div class="overlay-card">
+  <h2><span class="highlight">Lunara AI</span> — A Smarter Health Experience</h2>
+
+  <p>
+    Lunara AI 🤖 is an intelligent assistant designed to simplify medical and wellness information into clear, understandable insights.
+    It helps users interpret health-related data 📊, understand medical values 🧠, and receive meaningful wellness guidance 🌿.
+
+    <br><br>
+
+    Instead of overwhelming users with technical language, Lunara transforms information into a calm, interactive, and accessible experience.
+    Through smart interpretation, guidance, and user-friendly interaction, it creates a bridge between healthcare understanding and everyday users 💙
+  </p>
+</div>
+
+<!-- IMAGE CARDS -->
+<section class="gallery">
+
+  <div class="image-card">
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900">
+    <div class="caption">
+      Smart interaction ✨
+      <div class="tags">
+        <span class="tag">AI</span>
+        <span class="tag">Conversation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-card">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900">
+    <div class="caption">
+      Calm digital experience 💙
+      <div class="tags">
+        <span class="tag">Minimal</span>
+        <span class="tag">Modern</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-card">
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900">
+    <div class="caption">
+      Better wellness 🌿
+      <div class="tags">
+        <span class="tag">Health</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+
+  <div class="card">
+    <h3>🧠 Smart Insights</h3>
+    <p>Transforms complex information into clarity.</p>
+  </div>
+
+  <div class="card">
+    <h3>💙 Calm Experience</h3>
+    <p>Designed with a soothing and modern interface.</p>
+  </div>
+
+  <div class="card">
+    <h3>📊 Data Understanding</h3>
+    <p>Helps users interpret values intelligently.</p>
+  </div>
+
+  <div class="card">
+    <h3>✨ Interactive AI</h3>
+    <p>Provides human-friendly conversational support.</p>
+  </div>
+
+</section>
+
+<!-- FINAL BOX -->
+<div class="info-box">
+  <h2>🌸 Why Lunara AI?</h2>
+
+  <p>
+    Lunara AI focuses on clarity, accessibility, and intelligent interaction.
+    It demonstrates how artificial intelligence can simplify complex information
+    and create a more personalized digital experience for users 💫
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+Made by <b style="color:#f9a8d4;">Sneha Sarkar</b> 💙
+</footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
+</script>
+
+<!-- IBM WATSON ASSISTANT -->
+<script>
+window.watsonAssistantChatOptions = {
+  integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
+  region: "eu-de",
+  serviceInstanceID: "f3f2da03-ddee-4da0-b22f-2a7277620229",
+  onLoad: async (instance) => { await instance.render(); }
+};
+
+setTimeout(function(){
+  const t=document.createElement('script');
+  t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+  document.body.appendChild(t);
+});
+</script>
+
+</body>
+</html>
