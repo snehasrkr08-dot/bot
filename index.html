@@ -12,13 +12,13 @@
 <style>
 
 :root{
-  --pink:#ff5fa2;
-  --lightPink:#ffe6f1;
-  --softPink:#ffd3e5;
-  --bg:#fff7fb;
-  --card:rgba(255,255,255,0.7);
-  --text:#4a2940;
-  --shadow:0 10px 35px rgba(255,95,162,0.15);
+  --khaki:#c8b38e;
+  --beige:#f5eee4;
+  --soft:#ede0cf;
+  --dark:#5f5244;
+  --glass:rgba(255,255,255,0.22);
+  --border:rgba(255,255,255,0.35);
+  --shadow:0 10px 40px rgba(80,60,40,0.12);
 }
 
 *{
@@ -27,20 +27,16 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fff7fb,#ffe8f2,#ffd7ea);
-  color:var(--text);
+  background:linear-gradient(135deg,#f8f3ec,#efe4d3,#e5d2b5);
   overflow-x:hidden;
+  color:var(--dark);
 }
 
-/* BACKGROUND BLUR CIRCLES */
+/* BLURRED BACKGROUND CIRCLES */
 
-.blur{
+.bg-blur{
   position:fixed;
   border-radius:50%;
   filter:blur(100px);
@@ -51,16 +47,16 @@ body{
 .blur1{
   width:350px;
   height:350px;
-  background:#ff9bc4;
+  background:#d6c1a1;
   top:-100px;
-  left:-100px;
+  left:-120px;
 }
 
 .blur2{
   width:300px;
   height:300px;
-  background:#ffc2dc;
-  bottom:-80px;
+  background:#f0dfc8;
+  bottom:-100px;
   right:-80px;
 }
 
@@ -72,60 +68,86 @@ nav{
   justify-content:space-between;
   align-items:center;
   padding:25px 60px;
+  animation:fadeIn 1.5s ease;
 }
 
 .logo{
   font-size:1.6rem;
   font-weight:700;
-  color:var(--pink);
   letter-spacing:1px;
 }
 
 .nav-btn{
-  background:white;
-  border:none;
-  padding:12px 20px;
+  background:rgba(255,255,255,0.35);
+  border:1px solid rgba(255,255,255,0.4);
+  backdrop-filter:blur(10px);
+  padding:12px 22px;
   border-radius:30px;
   cursor:pointer;
+  transition:0.4s;
+  color:var(--dark);
   font-weight:600;
-  color:var(--pink);
-  transition:0.3s;
-  box-shadow:var(--shadow);
 }
 
 .nav-btn:hover{
-  transform:translateY(-3px);
-  background:var(--pink);
-  color:white;
+  transform:translateY(-4px);
+  background:rgba(255,255,255,0.55);
 }
 
 /* HERO */
 
 .hero{
-  padding:70px 20px 50px;
   text-align:center;
-  animation:fadeUp 1s ease;
+  padding:90px 20px 50px;
 }
 
 .hero h1{
-  font-size:4rem;
-  color:var(--pink);
-  margin-bottom:15px;
+  font-size:4.5rem;
+  font-weight:700;
+  color:#6b5c4d;
+  opacity:0;
+  animation:dropDown 1.3s ease forwards;
 }
 
 .hero p{
+  margin-top:15px;
   font-size:1.1rem;
-  color:#6b4a5d;
+  color:#7b6a58;
+  opacity:0;
+  animation:fadeUp 1.5s ease forwards;
+  animation-delay:0.5s;
+}
+
+/* DROPDOWN ANIMATION */
+
+@keyframes dropDown{
+  0%{
+    opacity:0;
+    transform:translateY(-120px);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 @keyframes fadeUp{
-  from{
+  0%{
     opacity:0;
     transform:translateY(40px);
   }
-  to{
+  100%{
     opacity:1;
     transform:translateY(0);
+  }
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
   }
 }
 
@@ -133,53 +155,54 @@ nav{
 
 .hero-image{
   width:90%;
-  max-width:1200px;
-  height:480px;
+  max-width:1250px;
+  height:500px;
   margin:auto;
   overflow:hidden;
-  border-radius:35px;
+  border-radius:40px;
   box-shadow:var(--shadow);
+  position:relative;
 }
 
 .hero-image img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:0.6s;
+  transition:1s ease;
 }
 
 .hero-image:hover img{
-  transform:scale(1.05);
+  transform:scale(1.08);
 }
 
-/* GLASS CARD */
+/* GLASS EFFECT CARD */
 
 .glass-card{
   width:90%;
   max-width:1100px;
-  margin:60px auto;
+  margin:70px auto;
   padding:50px;
   border-radius:35px;
-  background:var(--card);
-  backdrop-filter:blur(15px);
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
   box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,0.4);
-  transition:0.4s;
+  transition:0.5s;
+  animation:fadeUp 1.5s ease;
 }
 
 .glass-card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-10px);
 }
 
 .glass-card h2{
-  color:var(--pink);
   margin-bottom:20px;
   font-size:2rem;
 }
 
 .glass-card p{
   line-height:1.9;
-  color:#5f4352;
+  color:#66584a;
 }
 
 /* FEATURES */
@@ -187,31 +210,35 @@ nav{
 .features{
   width:90%;
   max-width:1200px;
-  margin:40px auto;
+  margin:50px auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
 }
 
 .feature-card{
-  background:var(--card);
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter:blur(14px);
   border-radius:30px;
   overflow:hidden;
-  backdrop-filter:blur(10px);
+  transition:0.5s;
   box-shadow:var(--shadow);
-  transition:0.4s;
-  border:1px solid transparent;
 }
 
 .feature-card:hover{
-  transform:translateY(-10px);
-  border-color:var(--pink);
+  transform:translateY(-12px) scale(1.02);
 }
 
 .feature-card img{
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:cover;
+  transition:0.8s;
+}
+
+.feature-card:hover img{
+  transform:scale(1.06);
 }
 
 .feature-content{
@@ -219,53 +246,61 @@ nav{
 }
 
 .feature-content h3{
-  color:var(--pink);
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .feature-content p{
+  color:#6f6153;
   line-height:1.7;
 }
 
-/* INPUT SECTION */
+/* FORM SECTION */
 
-.contact-section{
+.form-section{
   width:90%;
   max-width:1000px;
   margin:70px auto;
-  background:var(--card);
-  padding:45px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter:blur(16px);
   border-radius:35px;
-  backdrop-filter:blur(14px);
+  padding:45px;
   box-shadow:var(--shadow);
 }
 
-.contact-section h2{
-  color:var(--pink);
+.form-section h2{
   margin-bottom:25px;
 }
 
-.input-group{
+.input-box{
   margin-bottom:20px;
 }
 
-.input-group input,
-.input-group textarea{
+.input-box input,
+.input-box textarea{
   width:100%;
   padding:18px;
-  border-radius:18px;
-  border:2px solid transparent;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.35);
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(12px);
   outline:none;
+  color:#5f5244;
   font-size:1rem;
-  background:white;
-  transition:0.35s;
+  transition:0.4s;
   font-family:'Poppins',sans-serif;
 }
 
-.input-group input:focus,
-.input-group textarea:focus{
-  border-color:var(--pink);
-  box-shadow:0 0 15px rgba(255,95,162,0.25);
+.input-box input::placeholder,
+.input-box textarea::placeholder{
+  color:#7f6f61;
+}
+
+.input-box input:focus,
+.input-box textarea:focus{
+  border-color:#b89d73;
+  background:rgba(255,255,255,0.28);
+  box-shadow:0 0 18px rgba(184,157,115,0.25);
   transform:scale(1.01);
 }
 
@@ -274,29 +309,51 @@ textarea{
   resize:none;
 }
 
+/* BUTTON */
+
 .submit-btn{
-  background:var(--pink);
-  color:white;
-  border:none;
   padding:15px 28px;
+  border:none;
   border-radius:30px;
+  background:#b89d73;
+  color:white;
   cursor:pointer;
   font-size:1rem;
-  transition:0.3s;
+  transition:0.4s;
 }
 
 .submit-btn:hover{
-  transform:translateY(-3px);
-  background:#ff3d8d;
+  transform:translateY(-4px);
+  background:#9f8762;
 }
 
 /* FOOTER */
 
 footer{
   text-align:center;
-  padding:35px;
-  color:#7a5268;
-  font-size:0.95rem;
+  padding:40px;
+  color:#7a6b5c;
+  animation:fadeIn 2s ease;
+}
+
+/* FLOATING ANIMATION */
+
+.feature-card,
+.glass-card,
+.form-section{
+  animation:floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+  0%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(-6px);
+  }
+  100%{
+    transform:translateY(0px);
+  }
 }
 
 /* MOBILE */
@@ -308,16 +365,16 @@ nav{
 }
 
 .hero h1{
-  font-size:2.7rem;
-}
-
-.glass-card,
-.contact-section{
-  padding:30px;
+  font-size:2.8rem;
 }
 
 .hero-image{
   height:320px;
+}
+
+.glass-card,
+.form-section{
+  padding:30px;
 }
 
 }
@@ -327,8 +384,8 @@ nav{
 
 <body>
 
-<div class="blur blur1"></div>
-<div class="blur blur2"></div>
+<div class="bg-blur blur1"></div>
+<div class="bg-blur blur2"></div>
 
 <!-- NAVBAR -->
 
@@ -339,7 +396,7 @@ Lunara Health AI
 </div>
 
 <button class="nav-btn">
-Get Started
+Explore
 </button>
 
 </nav>
@@ -348,10 +405,10 @@ Get Started
 
 <section class="hero">
 
-<h1>Smart Healthcare Experience</h1>
+<h1>Lunara Health AI</h1>
 
 <p>
-AI-powered health insights with a modern and calming digital interface
+Modern healthcare assistance with intelligent and calming digital interaction
 </p>
 
 </section>
@@ -360,7 +417,7 @@ AI-powered health insights with a modern and calming digital interface
 
 <div class="hero-image">
 
-<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1400&auto=format&fit=crop" alt="Healthcare">
+<img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1600&auto=format&fit=crop" alt="Healthcare">
 
 </div>
 
@@ -368,15 +425,12 @@ AI-powered health insights with a modern and calming digital interface
 
 <div class="glass-card">
 
-<h2>About Lunara AI</h2>
+<h2>Healthcare Powered By Intelligent Design</h2>
 
 <p>
+Lunara AI simplifies healthcare understanding through intelligent interaction and modern user experience design. 
 
-Lunara AI is a healthcare-focused assistant designed to simplify medical understanding and wellness guidance through intelligent interaction.
-
-The platform transforms complex medical information into clear, accessible insights while maintaining a calm and modern user experience.
-
-With responsive design, interactive components, and AI-powered support, Lunara AI creates a more engaging healthcare experience for users.
+The platform is built to create a calm and aesthetic environment where users can explore health insights, wellness guidance, and AI-powered support through smooth animations and responsive interactions.
 
 </p>
 
@@ -388,14 +442,14 @@ With responsive design, interactive components, and AI-powered support, Lunara A
 
 <div class="feature-card">
 
-<img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1400&auto=format&fit=crop">
 
 <div class="feature-content">
 
-<h3>Medical Assistance</h3>
+<h3>Smart Medical Assistance</h3>
 
 <p>
-Understand reports, symptoms, and wellness information with AI-powered guidance.
+Interactive AI guidance for healthcare understanding and wellness awareness.
 </p>
 
 </div>
@@ -404,14 +458,14 @@ Understand reports, symptoms, and wellness information with AI-powered guidance.
 
 <div class="feature-card">
 
-<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1400&auto=format&fit=crop">
 
 <div class="feature-content">
 
 <h3>Health Monitoring</h3>
 
 <p>
-Track healthcare insights and improve awareness through interactive digital support.
+Track information and improve digital healthcare accessibility with intelligent interaction.
 </p>
 
 </div>
@@ -420,14 +474,14 @@ Track healthcare insights and improve awareness through interactive digital supp
 
 <div class="feature-card">
 
-<img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=1400&auto=format&fit=crop">
 
 <div class="feature-content">
 
 <h3>Modern User Experience</h3>
 
 <p>
-Soft visuals, hover animations, and responsive interactions designed for comfort.
+Aesthetic visuals, hover effects, glassmorphism, and smooth interface animations.
 </p>
 
 </div>
@@ -436,22 +490,22 @@ Soft visuals, hover animations, and responsive interactions designed for comfort
 
 </section>
 
-<!-- CONTACT SECTION -->
+<!-- FORM -->
 
-<section class="contact-section">
+<section class="form-section">
 
-<h2>Talk With Lunara AI</h2>
+<h2>Connect With Lunara AI</h2>
 
-<div class="input-group">
+<div class="input-box">
 <input type="text" placeholder="Enter your name">
 </div>
 
-<div class="input-group">
+<div class="input-box">
 <input type="email" placeholder="Enter your email">
 </div>
 
-<div class="input-group">
-<textarea placeholder="Describe your health concern or question"></textarea>
+<div class="input-box">
+<textarea placeholder="Describe your healthcare concern"></textarea>
 </div>
 
 <button class="submit-btn">
@@ -464,7 +518,7 @@ Send Message
 
 <footer>
 
-Designed for intelligent healthcare experiences
+Designed for modern AI healthcare experiences
 
 </footer>
 
@@ -482,7 +536,7 @@ await instance.render();
 }
 };
 
-setTimeout(function () {
+setTimeout(function(){
 
 const t=document.createElement('script');
 
