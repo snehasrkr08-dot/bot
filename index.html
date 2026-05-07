@@ -12,369 +12,587 @@
 <style>
 
 :root{
-  --khaki:#c8b38e;
-  --beige:#f5eee4;
-  --soft:#ede0cf;
-  --dark:#5f5244;
-  --glass:rgba(255,255,255,0.22);
-  --border:rgba(255,255,255,0.35);
-  --shadow:0 10px 40px rgba(80,60,40,0.12);
+
+/* LIGHT MODE */
+
+--bg:#f5efe6;
+--bg2:#e5d6c3;
+
+--text:#4e4338;
+
+--accent:#b89b79;
+--accent2:#d7c2a7;
+
+--card:rgba(255,255,255,0.18);
+--border:rgba(255,255,255,0.28);
+
+--shadow:0 10px 40px rgba(0,0,0,0.08);
+
+--hero:
+linear-gradient(rgba(20,20,20,0.30),rgba(20,20,20,0.30)),
+url('https://images.unsplash.com/photo-1494390248081-4e521a5940db?q=80&w=1600&auto=format&fit=crop');
+
+}
+
+/* DARK MODE */
+
+body.dark{
+
+--bg:#121212;
+--bg2:#1f1d1a;
+
+--text:#f3ece4;
+
+--accent:#d3b18a;
+--accent2:#9c7b5f;
+
+--card:rgba(255,255,255,0.06);
+--border:rgba(255,255,255,0.08);
+
+--shadow:0 10px 40px rgba(0,0,0,0.45);
+
+--hero:
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1600&auto=format&fit=crop');
+
 }
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#f8f3ec,#efe4d3,#e5d2b5);
-  overflow-x:hidden;
-  color:var(--dark);
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,var(--bg),var(--bg2));
+color:var(--text);
+overflow-x:hidden;
+transition:0.5s ease;
 }
 
-/* BLURRED BACKGROUND CIRCLES */
+/* CUSTOM SCROLLBAR */
 
-.bg-blur{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(100px);
-  z-index:-1;
-  opacity:0.5;
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-track{
+background:transparent;
+}
+
+::-webkit-scrollbar-thumb{
+background:var(--accent);
+border-radius:20px;
+}
+
+/* BACKGROUND BLURS */
+
+.blur{
+position:fixed;
+border-radius:50%;
+filter:blur(100px);
+z-index:-1;
+opacity:0.35;
+animation:floatBlob 12s infinite ease-in-out;
 }
 
 .blur1{
-  width:350px;
-  height:350px;
-  background:#d6c1a1;
-  top:-100px;
-  left:-120px;
+width:350px;
+height:350px;
+background:#c9b194;
+top:-120px;
+left:-120px;
 }
 
 .blur2{
-  width:300px;
-  height:300px;
-  background:#f0dfc8;
-  bottom:-100px;
-  right:-80px;
+width:300px;
+height:300px;
+background:#e0ccb2;
+bottom:-100px;
+right:-100px;
+animation-delay:3s;
+}
+
+@keyframes floatBlob{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-30px);}
+100%{transform:translateY(0px);}
 }
 
 /* NAVBAR */
 
 nav{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:25px 60px;
-  animation:fadeIn 1.5s ease;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 70px;
+position:sticky;
+top:0;
+z-index:1000;
+
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
-  font-size:1.6rem;
-  font-weight:700;
-  letter-spacing:1px;
+font-size:1.7rem;
+font-weight:700;
+letter-spacing:1px;
 }
 
-.nav-btn{
-  background:rgba(255,255,255,0.35);
-  border:1px solid rgba(255,255,255,0.4);
-  backdrop-filter:blur(10px);
-  padding:12px 22px;
-  border-radius:30px;
-  cursor:pointer;
-  transition:0.4s;
-  color:var(--dark);
-  font-weight:600;
+/* DARK MODE TOGGLE */
+
+.toggle-wrapper{
+display:flex;
+align-items:center;
+gap:14px;
 }
 
-.nav-btn:hover{
-  transform:translateY(-4px);
-  background:rgba(255,255,255,0.55);
+.toggle-label{
+font-size:0.95rem;
+font-weight:500;
+}
+
+.toggle{
+width:75px;
+height:38px;
+background:rgba(255,255,255,0.15);
+border-radius:50px;
+position:relative;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.15);
+transition:0.4s;
+}
+
+.toggle::before{
+content:"";
+position:absolute;
+width:28px;
+height:28px;
+border-radius:50%;
+background:var(--accent);
+
+top:4px;
+left:5px;
+
+transition:0.4s;
+}
+
+body.dark .toggle::before{
+transform:translateX(35px);
 }
 
 /* HERO */
 
 .hero{
-  text-align:center;
-  padding:90px 20px 50px;
+width:92%;
+max-width:1350px;
+height:650px;
+
+margin:35px auto;
+
+border-radius:45px;
+
+overflow:hidden;
+
+position:relative;
+
+background:var(--hero);
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+box-shadow:var(--shadow);
+
+animation:heroReveal 1.2s ease;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+backdrop-filter:blur(2px);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+padding:20px;
 }
 
 .hero h1{
-  font-size:4.5rem;
-  font-weight:700;
-  color:#6b5c4d;
-  opacity:0;
-  animation:dropDown 1.3s ease forwards;
+font-size:5rem;
+color:white;
+margin-bottom:20px;
+
+opacity:0;
+
+animation:dropDown 1.2s ease forwards;
 }
 
 .hero p{
-  margin-top:15px;
-  font-size:1.1rem;
-  color:#7b6a58;
-  opacity:0;
-  animation:fadeUp 1.5s ease forwards;
-  animation-delay:0.5s;
+max-width:760px;
+margin:auto;
+line-height:2;
+font-size:1.1rem;
+color:#f4ede6;
+
+opacity:0;
+
+animation:fadeUp 1.5s ease forwards;
+animation-delay:0.5s;
 }
 
-/* DROPDOWN ANIMATION */
+/* HERO BUTTON */
+
+.hero-btn{
+margin-top:35px;
+
+padding:16px 34px;
+
+border:none;
+
+border-radius:40px;
+
+background:rgba(255,255,255,0.14);
+
+backdrop-filter:blur(14px);
+
+color:white;
+
+font-size:1rem;
+
+cursor:pointer;
+
+border:1px solid rgba(255,255,255,0.25);
+
+transition:0.4s;
+}
+
+.hero-btn:hover{
+transform:translateY(-6px) scale(1.04);
+background:rgba(255,255,255,0.22);
+}
+
+/* ANIMATIONS */
+
+@keyframes heroReveal{
+from{
+opacity:0;
+transform:scale(0.96);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
 
 @keyframes dropDown{
-  0%{
-    opacity:0;
-    transform:translateY(-120px);
-  }
-  100%{
-    opacity:1;
-    transform:translateY(0);
-  }
+0%{
+opacity:0;
+transform:translateY(-120px);
+}
+100%{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 @keyframes fadeUp{
-  0%{
-    opacity:0;
-    transform:translateY(40px);
-  }
-  100%{
-    opacity:1;
-    transform:translateY(0);
-  }
+0%{
+opacity:0;
+transform:translateY(40px);
+}
+100%{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-  }
-  to{
-    opacity:1;
-  }
+/* GLASS SECTION */
+
+.glass{
+width:90%;
+max-width:1150px;
+
+margin:80px auto;
+
+padding:60px;
+
+border-radius:35px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(18px);
+
+box-shadow:var(--shadow);
+
+transition:0.5s;
 }
 
-/* HERO IMAGE */
-
-.hero-image{
-  width:90%;
-  max-width:1250px;
-  height:500px;
-  margin:auto;
-  overflow:hidden;
-  border-radius:40px;
-  box-shadow:var(--shadow);
-  position:relative;
+.glass:hover{
+transform:translateY(-10px);
 }
 
-.hero-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:1s ease;
+.glass h2{
+font-size:2rem;
+margin-bottom:22px;
 }
 
-.hero-image:hover img{
-  transform:scale(1.08);
+.glass p{
+line-height:2;
+opacity:0.9;
 }
 
-/* GLASS EFFECT CARD */
+/* PINTEREST GRID */
 
-.glass-card{
-  width:90%;
-  max-width:1100px;
-  margin:70px auto;
-  padding:50px;
-  border-radius:35px;
-  background:var(--glass);
-  backdrop-filter:blur(18px);
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  transition:0.5s;
-  animation:fadeUp 1.5s ease;
+.grid{
+width:92%;
+max-width:1300px;
+
+margin:70px auto;
+
+columns:3 280px;
+column-gap:24px;
 }
 
-.glass-card:hover{
-  transform:translateY(-10px);
+.card{
+background:var(--card);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(16px);
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-bottom:24px;
+
+break-inside:avoid;
+
+box-shadow:var(--shadow);
+
+transition:0.5s;
+cursor:pointer;
 }
 
-.glass-card h2{
-  margin-bottom:20px;
-  font-size:2rem;
+.card:hover{
+transform:translateY(-10px) scale(1.02);
 }
 
-.glass-card p{
-  line-height:1.9;
-  color:#66584a;
+.card img{
+width:100%;
+display:block;
+transition:0.8s;
 }
 
-/* FEATURES */
-
-.features{
-  width:90%;
-  max-width:1200px;
-  margin:50px auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:30px;
+.card:hover img{
+transform:scale(1.05);
 }
 
-.feature-card{
-  background:var(--glass);
-  border:1px solid var(--border);
-  backdrop-filter:blur(14px);
-  border-radius:30px;
-  overflow:hidden;
-  transition:0.5s;
-  box-shadow:var(--shadow);
+.card-content{
+padding:22px;
 }
 
-.feature-card:hover{
-  transform:translateY(-12px) scale(1.02);
+.card-content h3{
+margin-bottom:12px;
 }
 
-.feature-card img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  transition:0.8s;
+.card-content p{
+line-height:1.8;
+font-size:0.94rem;
+opacity:0.82;
 }
 
-.feature-card:hover img{
-  transform:scale(1.06);
+/* STATS SECTION */
+
+.stats{
+width:92%;
+max-width:1200px;
+
+margin:90px auto;
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:24px;
 }
 
-.feature-content{
-  padding:25px;
+.stat-box{
+background:var(--card);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(14px);
+
+padding:40px;
+
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:var(--shadow);
+
+transition:0.5s;
 }
 
-.feature-content h3{
-  margin-bottom:12px;
+.stat-box:hover{
+transform:translateY(-8px);
 }
 
-.feature-content p{
-  color:#6f6153;
-  line-height:1.7;
+.stat-box h1{
+font-size:3rem;
+margin-bottom:10px;
+color:var(--accent);
 }
 
-/* FORM SECTION */
+/* CONTACT */
 
-.form-section{
-  width:90%;
-  max-width:1000px;
-  margin:70px auto;
-  background:var(--glass);
-  border:1px solid var(--border);
-  backdrop-filter:blur(16px);
-  border-radius:35px;
-  padding:45px;
-  box-shadow:var(--shadow);
+.contact{
+width:90%;
+max-width:1050px;
+
+margin:80px auto;
+
+padding:55px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(18px);
+
+border-radius:35px;
+
+box-shadow:var(--shadow);
 }
 
-.form-section h2{
-  margin-bottom:25px;
+.contact h2{
+margin-bottom:28px;
 }
+
+/* INPUTS */
 
 .input-box{
-  margin-bottom:20px;
+margin-bottom:22px;
 }
 
 .input-box input,
 .input-box textarea{
-  width:100%;
-  padding:18px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,0.35);
-  background:rgba(255,255,255,0.18);
-  backdrop-filter:blur(12px);
-  outline:none;
-  color:#5f5244;
-  font-size:1rem;
-  transition:0.4s;
-  font-family:'Poppins',sans-serif;
+
+width:100%;
+
+padding:18px;
+
+border-radius:22px;
+
+border:1px solid rgba(255,255,255,0.15);
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(14px);
+
+outline:none;
+
+font-size:1rem;
+
+font-family:'Poppins',sans-serif;
+
+color:var(--text);
+
+transition:0.4s;
 }
 
 .input-box input::placeholder,
 .input-box textarea::placeholder{
-  color:#7f6f61;
+color:rgba(100,100,100,0.75);
 }
 
 .input-box input:focus,
 .input-box textarea:focus{
-  border-color:#b89d73;
-  background:rgba(255,255,255,0.28);
-  box-shadow:0 0 18px rgba(184,157,115,0.25);
-  transform:scale(1.01);
+
+border-color:var(--accent);
+
+background:rgba(255,255,255,0.18);
+
+box-shadow:0 0 18px rgba(255,255,255,0.12);
+
+transform:scale(1.01);
+
 }
 
 textarea{
-  min-height:140px;
-  resize:none;
+min-height:150px;
+resize:none;
 }
 
 /* BUTTON */
 
-.submit-btn{
-  padding:15px 28px;
-  border:none;
-  border-radius:30px;
-  background:#b89d73;
-  color:white;
-  cursor:pointer;
-  font-size:1rem;
-  transition:0.4s;
+.send-btn{
+padding:16px 34px;
+
+border:none;
+
+border-radius:40px;
+
+background:var(--accent);
+
+color:white;
+
+cursor:pointer;
+
+font-size:1rem;
+
+transition:0.4s;
 }
 
-.submit-btn:hover{
-  transform:translateY(-4px);
-  background:#9f8762;
+.send-btn:hover{
+transform:translateY(-5px);
+background:var(--accent2);
 }
 
 /* FOOTER */
 
 footer{
-  text-align:center;
-  padding:40px;
-  color:#7a6b5c;
-  animation:fadeIn 2s ease;
+text-align:center;
+padding:50px;
+opacity:0.75;
 }
 
-/* FLOATING ANIMATION */
-
-.feature-card,
-.glass-card,
-.form-section{
-  animation:floatCard 5s ease-in-out infinite;
-}
-
-@keyframes floatCard{
-  0%{
-    transform:translateY(0px);
-  }
-  50%{
-    transform:translateY(-6px);
-  }
-  100%{
-    transform:translateY(0px);
-  }
-}
-
-/* MOBILE */
+/* RESPONSIVE */
 
 @media(max-width:768px){
 
 nav{
-  padding:20px;
+padding:22px;
+}
+
+.hero{
+height:540px;
 }
 
 .hero h1{
-  font-size:2.8rem;
+font-size:2.8rem;
 }
 
-.hero-image{
-  height:320px;
-}
-
-.glass-card,
-.form-section{
-  padding:30px;
+.glass,
+.contact{
+padding:30px;
 }
 
 }
@@ -384,8 +602,10 @@ nav{
 
 <body>
 
-<div class="bg-blur blur1"></div>
-<div class="bg-blur blur2"></div>
+<!-- BACKGROUND BLOBS -->
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
 
 <!-- NAVBAR -->
 
@@ -395,9 +615,15 @@ nav{
 Lunara Health AI
 </div>
 
-<button class="nav-btn">
-Explore
-</button>
+<div class="toggle-wrapper">
+
+<span class="toggle-label">
+Dark Mode
+</span>
+
+<div class="toggle" onclick="toggleDarkMode()"></div>
+
+</div>
 
 </nav>
 
@@ -405,83 +631,150 @@ Explore
 
 <section class="hero">
 
-<h1>Lunara Health AI</h1>
+<div class="hero-content">
+
+<h1>
+Aesthetic Healthcare Experience
+</h1>
 
 <p>
-Modern healthcare assistance with intelligent and calming digital interaction
+
+AI-powered wellness interaction designed with cinematic visuals, Pinterest-inspired layouts, premium glassmorphism, soft hover animations, and modern healthcare aesthetics.
+
 </p>
 
-</section>
-
-<!-- HERO IMAGE -->
-
-<div class="hero-image">
-
-<img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1600&auto=format&fit=crop" alt="Healthcare">
+<button class="hero-btn">
+Explore Experience
+</button>
 
 </div>
+
+</section>
 
 <!-- ABOUT -->
 
-<div class="glass-card">
+<section class="glass">
 
-<h2>Healthcare Powered By Intelligent Design</h2>
+<h2>
+Modern Healthcare Meets Elegant Design
+</h2>
 
 <p>
-Lunara AI simplifies healthcare understanding through intelligent interaction and modern user experience design. 
 
-The platform is built to create a calm and aesthetic environment where users can explore health insights, wellness guidance, and AI-powered support through smooth animations and responsive interactions.
+Lunara AI creates a calming digital healthcare environment with intelligent interaction, aesthetic layouts, soft motion effects, and immersive visual storytelling.
+
+Inspired by luxury wellness brands and editorial Pinterest layouts, the experience adapts beautifully between dark and light modes while maintaining a premium feel.
 
 </p>
 
-</div>
+</section>
 
-<!-- FEATURES -->
+<!-- PINTEREST GRID -->
 
-<section class="features">
+<section class="grid">
 
-<div class="feature-card">
+<div class="card">
 
-<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1400&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop">
 
-<div class="feature-content">
+<div class="card-content">
 
-<h3>Smart Medical Assistance</h3>
-
-<p>
-Interactive AI guidance for healthcare understanding and wellness awareness.
-</p>
-
-</div>
-
-</div>
-
-<div class="feature-card">
-
-<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1400&auto=format&fit=crop">
-
-<div class="feature-content">
-
-<h3>Health Monitoring</h3>
+<h3>
+Digital Wellness
+</h3>
 
 <p>
-Track information and improve digital healthcare accessibility with intelligent interaction.
+Soft healthcare experiences designed for intelligent wellness support.
 </p>
 
 </div>
 
 </div>
 
-<div class="feature-card">
+<div class="card">
 
-<img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=1400&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop">
 
-<div class="feature-content">
+<div class="card-content">
 
-<h3>Modern User Experience</h3>
+<h3>
+Clinical Simplicity
+</h3>
 
 <p>
-Aesthetic visuals, hover effects, glassmorphism, and smooth interface animations.
+Modern healthcare visuals with elegant interaction design and calm aesthetics.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+AI Assistance
+</h3>
+
+<p>
+Interactive healthcare support powered through intelligent digital systems.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Wellness Monitoring
+</h3>
+
+<p>
+Premium healthcare dashboards inspired by editorial and Pinterest layouts.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1580281657527-47f249e8f4df?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Health Insights
+</h3>
+
+<p>
+Designed with floating cards, glassmorphism, and immersive visual storytelling.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Calming Experience
+</h3>
+
+<p>
+Elegant healthcare interaction crafted for modern digital wellness experiences.
 </p>
 
 </div>
@@ -490,11 +783,67 @@ Aesthetic visuals, hover effects, glassmorphism, and smooth interface animations
 
 </section>
 
-<!-- FORM -->
+<!-- STATS -->
 
-<section class="form-section">
+<section class="stats">
 
-<h2>Connect With Lunara AI</h2>
+<div class="stat-box">
+
+<h1>
+24/7
+</h1>
+
+<p>
+AI Wellness Support
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h1>
+98%
+</h1>
+
+<p>
+User Satisfaction
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h1>
+50K+
+</h1>
+
+<p>
+Health Interactions
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h1>
+100+
+</h1>
+
+<p>
+Wellness Insights
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+<h2>
+Talk With Lunara AI
+</h2>
 
 <div class="input-box">
 <input type="text" placeholder="Enter your name">
@@ -508,7 +857,7 @@ Aesthetic visuals, hover effects, glassmorphism, and smooth interface animations
 <textarea placeholder="Describe your healthcare concern"></textarea>
 </div>
 
-<button class="submit-btn">
+<button class="send-btn">
 Send Message
 </button>
 
@@ -518,22 +867,38 @@ Send Message
 
 <footer>
 
-Designed for modern AI healthcare experiences
+Designed for modern aesthetic healthcare experiences
 
 </footer>
+
+<!-- DARK MODE -->
+
+<script>
+
+function toggleDarkMode(){
+document.body.classList.toggle("dark");
+}
+
+</script>
 
 <!-- IBM WATSON ASSISTANT -->
 
 <script>
 
 window.watsonAssistantChatOptions = {
+
 integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
+
 region: "eu-de",
+
 serviceInstanceID: "f3f2da03-ddee-4da0-b22f-2a7277620229",
 
 onLoad: async (instance) => {
+
 await instance.render();
+
 }
+
 };
 
 setTimeout(function(){
