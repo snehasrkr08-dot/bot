@@ -1,416 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lunara AI ✨</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Lunara AI 🌸</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
-  --bg:#0f172a;
-  --bg2:#1e3a8a;
-  --text:#ffffff;
-  --accent:#7dd3fc;
-  --card:rgba(255,255,255,0.08);
-  --pink:#f9a8d4;
+  --bg1:#ffe4f1;
+  --bg2:#ffd6ec;
+  --bg3:#ffc2e2;
+  --card:rgba(255,255,255,0.45);
+  --text:#5b2b44;
+  --accent:#ff69b4;
+  --soft:#fff0f7;
+  --shadow:0 8px 30px rgba(255,105,180,0.15);
 }
 
-body.light{
-  --bg:#fdf4ff;
-  --bg2:#dbeafe;
-  --text:#1e293b;
-  --card:rgba(255,255,255,0.75);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,var(--bg),var(--bg2));
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
   color:var(--text);
-  transition:0.4s;
   overflow-x:hidden;
 }
 
-/* TOP BAR */
+/* FLOATING BLOBS */
+
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  z-index:-1;
+  filter:blur(80px);
+}
+
+body::before{
+  background:#ff9ed1;
+  top:-100px;
+  left:-100px;
+}
+
+body::after{
+  background:#ffc4e1;
+  bottom:-120px;
+  right:-120px;
+}
+
+/* TOP STRIP */
+
 .top-strip{
   text-align:center;
-  padding:8px;
-  font-size:0.75rem;
-  letter-spacing:1px;
-  background:rgba(255,255,255,0.08);
+  padding:10px;
+  background:rgba(255,255,255,0.25);
   backdrop-filter:blur(10px);
+  font-size:0.8rem;
+  letter-spacing:1px;
+  color:#7a3658;
 }
 
 /* NAVBAR */
+
 nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px;
+  padding:22px 40px;
 }
 
-/* TOGGLE */
-.toggle-wrapper{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+.logo{
+  font-size:1.5rem;
+  font-weight:700;
+  color:#ff4fa0;
 }
 
-.switch{
-  width:52px;
-  height:25px;
-  position:relative;
-}
+/* BUTTON */
 
-.switch input{
-  display:none;
-}
-
-.slider{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:#cbd5e1;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-.slider::before{
-  content:"";
-  position:absolute;
-  width:19px;
-  height:19px;
+.theme-btn{
   background:white;
-  border-radius:50%;
-  top:3px;
-  left:3px;
+  border:none;
+  padding:10px 18px;
+  border-radius:30px;
+  cursor:pointer;
+  color:#ff4fa0;
+  font-weight:600;
   transition:0.3s;
+  box-shadow:var(--shadow);
 }
 
-input:checked + .slider{
-  background:var(--accent);
-}
-
-input:checked + .slider::before{
-  transform:translateX(27px);
-}
-
-.toggle-text{
-  font-size:0.7rem;
-  margin-top:4px;
+.theme-btn:hover{
+  transform:translateY(-3px);
 }
 
 /* HERO */
+
 .hero{
   text-align:center;
-  padding:60px 20px 30px;
+  padding:70px 20px 40px;
 }
 
 .hero h1{
-  font-size:3.4rem;
-  margin-bottom:8px;
-  animation:drop 1s ease;
+  font-size:4rem;
+  color:#ff4fa0;
+  margin-bottom:15px;
+  animation:float 3s ease-in-out infinite;
 }
 
-.subtitle{
-  color:#c4b5fd;
-  font-size:1rem;
+.hero p{
+  font-size:1.1rem;
+  color:#7a3658;
 }
 
 .quote{
-  margin-top:8px;
+  margin-top:12px;
   font-style:italic;
-  color:#bfdbfe;
+  color:#b04d82;
 }
 
-@keyframes drop{
-  from{
-    opacity:0;
-    transform:translateY(-50px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+/* FLOAT ANIMATION */
+
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0px);}
 }
 
-/* PARALLAX IMAGE */
-.hero-img{
-  height:340px;
-  background:
-  linear-gradient(rgba(15,23,42,0.3),rgba(15,23,42,0.3)),
-  url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1400')
-  center/cover fixed;
-}
+/* HERO IMAGE */
 
-/* OVERLAY CARD */
-.overlay-card{
-  max-width:1050px;
-  margin:-90px auto 40px;
-  padding:40px;
-  border-radius:28px;
-  background:var(--card);
-  backdrop-filter:blur(18px);
-  text-align:center;
-  box-shadow:0 10px 40px rgba(0,0,0,0.25);
-  transition:0.4s;
-}
-
-.overlay-card:hover{
-  transform:translateY(-8px);
-  border:1px solid var(--pink);
-}
-
-.overlay-card h2{
-  font-size:2rem;
-}
-
-.highlight{
-  color:#f9a8d4;
-}
-
-.overlay-card p{
-  line-height:1.8;
-  max-width:850px;
-  margin:auto;
-}
-
-/* IMAGE CARDS */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
-  padding:40px;
-}
-
-.image-card{
-  background:var(--card);
-  border-radius:20px;
+.hero-image{
+  width:90%;
+  max-width:1200px;
+  height:420px;
+  margin:30px auto;
+  border-radius:35px;
   overflow:hidden;
-  transition:0.4s;
-  border:1px solid transparent;
+  box-shadow:var(--shadow);
 }
 
-.image-card:hover{
-  transform:translateY(-8px);
-  border:1px solid var(--accent);
-  box-shadow:0 0 18px rgba(125,211,252,0.35);
-}
-
-.image-card img{
+.hero-image img{
   width:100%;
-  height:190px;
+  height:100%;
   object-fit:cover;
 }
 
-.caption{
-  padding:14px;
-}
+/* GLASS CARD */
 
-.tags{
-  margin-top:8px;
-}
-
-.tag{
-  display:inline-block;
-  padding:5px 10px;
-  margin:4px;
-  border-radius:14px;
-  font-size:0.7rem;
-  background:rgba(255,255,255,0.12);
-}
-
-/* FEATURE BOXES */
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:40px;
-}
-
-.card{
+.glass-card{
+  width:90%;
+  max-width:1050px;
+  margin:40px auto;
   background:var(--card);
-  padding:25px;
-  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.35);
+  backdrop-filter:blur(14px);
+  border-radius:35px;
+  padding:45px;
   text-align:center;
+  box-shadow:var(--shadow);
   transition:0.4s;
 }
 
-.card:hover{
+.glass-card:hover{
   transform:translateY(-8px);
-  border:1px solid var(--pink);
 }
 
-/* FINAL INFO BOX */
-.info-box{
-  max-width:1000px;
-  margin:20px auto 60px;
-  padding:35px;
-  border-radius:24px;
+.glass-card h2{
+  font-size:2.2rem;
+  margin-bottom:20px;
+  color:#ff4fa0;
+}
+
+.glass-card p{
+  line-height:1.9;
+}
+
+/* FEATURES */
+
+.features{
+  width:90%;
+  max-width:1200px;
+  margin:50px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.feature-card{
   background:var(--card);
-  backdrop-filter:blur(16px);
+  border-radius:28px;
+  padding:30px;
   text-align:center;
+  backdrop-filter:blur(10px);
+  box-shadow:var(--shadow);
   transition:0.4s;
 }
 
-.info-box:hover{
-  transform:translateY(-6px);
-  border:1px solid var(--accent);
+.feature-card:hover{
+  transform:translateY(-10px) scale(1.03);
+}
+
+.feature-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:20px;
+  margin-bottom:15px;
+}
+
+.feature-card h3{
+  color:#ff4fa0;
+  margin-bottom:10px;
+}
+
+/* FINAL SECTION */
+
+.final-box{
+  width:90%;
+  max-width:1000px;
+  margin:50px auto;
+  padding:45px;
+  border-radius:35px;
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.final-box h2{
+  color:#ff4fa0;
+  margin-bottom:15px;
 }
 
 /* FOOTER */
+
 footer{
   text-align:center;
-  padding:30px;
-  font-size:0.9rem;
+  padding:35px;
+  color:#94486e;
+  font-size:0.95rem;
 }
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+  font-size:2.8rem;
+}
+
+nav{
+  padding:20px;
+}
+
+.glass-card,
+.final-box{
+  padding:30px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- TOP STRIP -->
 <div class="top-strip">
-💙 AI-powered wellness assistant • Smart • Calm • Interactive
+🌸 Cute AI Wellness Experience • Smart • Soft • Interactive
 </div>
 
-<!-- NAV -->
 <nav>
-  <div><b>Lunara AI ✨</b></div>
+  <div class="logo">Lunara AI ✨</div>
 
-  <div class="toggle-wrapper">
-    <label class="switch">
-      <input type="checkbox" onclick="toggleMode()">
-      <span class="slider"></span>
-    </label>
-    <span class="toggle-text">Light mode</span>
-  </div>
+  <button class="theme-btn">
+    💖 Pink Mode
+  </button>
 </nav>
 
 <!-- HERO -->
+
 <section class="hero">
-  <h1>Lunara AI ✨</h1>
-  <p class="subtitle">Your intelligent wellness and medical interpretation companion</p>
-  <p class="quote">“Technology feels best when it understands humans.” 💫</p>
+
+  <h1>Lunara AI 🌸</h1>
+
+  <p>Your intelligent wellness and healthcare companion</p>
+
+  <p class="quote">
+    “Technology feels magical when it understands humans.” 💫
+  </p>
+
 </section>
 
-<!-- IMAGE -->
-<div class="hero-img"></div>
+<!-- HERO IMAGE -->
 
-<!-- OVERLAY -->
-<div class="overlay-card">
-  <h2><span class="highlight">Lunara AI</span> — A Smarter Health Experience</h2>
+<div class="hero-image">
+  <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1400&auto=format&fit=crop" alt="">
+</div>
+
+<!-- MAIN CARD -->
+
+<div class="glass-card">
+
+  <h2>💖 A Softer AI Experience</h2>
 
   <p>
-    Lunara AI 🤖 is an intelligent assistant designed to simplify medical and wellness information into clear, understandable insights.
-    It helps users interpret health-related data 📊, understand medical values 🧠, and receive meaningful wellness guidance 🌿.
+    Lunara AI is designed to transform complicated medical and wellness information into a calm, friendly, and understandable experience 🌷
 
     <br><br>
 
-    Instead of overwhelming users with technical language, Lunara transforms information into a calm, interactive, and accessible experience.
-    Through smart interpretation, guidance, and user-friendly interaction, it creates a bridge between healthcare understanding and everyday users 💙
+    Instead of overwhelming users with technical terms, Lunara provides smart interpretation, interactive support, and wellness guidance in a soft and modern environment ✨
+
+    <br><br>
+
+    Built with intelligent AI interaction and soothing visuals, Lunara creates a beautiful connection between healthcare understanding and everyday users 💕
   </p>
+
 </div>
 
-<!-- IMAGE CARDS -->
-<section class="gallery">
-
-  <div class="image-card">
-    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900">
-    <div class="caption">
-      Smart interaction ✨
-      <div class="tags">
-        <span class="tag">AI</span>
-        <span class="tag">Conversation</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="image-card">
-    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900">
-    <div class="caption">
-      Calm digital experience 💙
-      <div class="tags">
-        <span class="tag">Minimal</span>
-        <span class="tag">Modern</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="image-card">
-    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900">
-    <div class="caption">
-      Better wellness 🌿
-      <div class="tags">
-        <span class="tag">Health</span>
-        <span class="tag">Lifestyle</span>
-      </div>
-    </div>
-  </div>
-
-</section>
-
 <!-- FEATURES -->
+
 <section class="features">
 
-  <div class="card">
-    <h3>🧠 Smart Insights</h3>
-    <p>Transforms complex information into clarity.</p>
+  <div class="feature-card">
+
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+
+    <h3>✨ Smart AI</h3>
+
+    <p>
+      Human-friendly conversations and intelligent support.
+    </p>
+
   </div>
 
-  <div class="card">
-    <h3>💙 Calm Experience</h3>
-    <p>Designed with a soothing and modern interface.</p>
+  <div class="feature-card">
+
+    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
+
+    <h3>🌸 Calm Design</h3>
+
+    <p>
+      Soft pink aesthetics with relaxing interaction.
+    </p>
+
   </div>
 
-  <div class="card">
-    <h3>📊 Data Understanding</h3>
-    <p>Helps users interpret values intelligently.</p>
-  </div>
+  <div class="feature-card">
 
-  <div class="card">
-    <h3>✨ Interactive AI</h3>
-    <p>Provides human-friendly conversational support.</p>
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop">
+
+    <h3>💖 Wellness Focus</h3>
+
+    <p>
+      Designed to make healthcare feel approachable and easy.
+    </p>
+
   </div>
 
 </section>
 
 <!-- FINAL BOX -->
-<div class="info-box">
-  <h2>🌸 Why Lunara AI?</h2>
+
+<div class="final-box">
+
+  <h2>🎀 Why Lunara AI?</h2>
 
   <p>
-    Lunara AI focuses on clarity, accessibility, and intelligent interaction.
-    It demonstrates how artificial intelligence can simplify complex information
-    and create a more personalized digital experience for users 💫
+    Lunara AI combines intelligent technology with emotional design 🌷
+    creating a digital healthcare experience that feels modern, calming, and beautifully interactive ✨
   </p>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
-Made by <b style="color:#f9a8d4;">Sneha Sarkar</b> 💙
+
+Made with 💖 by <b style="color:#ff4fa0;">Sneha Sarkar</b>
+
 </footer>
 
-<script>
-function toggleMode(){
-  document.body.classList.toggle("light");
-}
-</script>
+<!-- IBM WATSON BOT -->
 
-<!-- IBM WATSON ASSISTANT -->
 <script>
+
 window.watsonAssistantChatOptions = {
   integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
   region: "eu-de",
   serviceInstanceID: "f3f2da03-ddee-4da0-b22f-2a7277620229",
-  onLoad: async (instance) => { await instance.render(); }
+
+  onLoad: async (instance) => {
+    await instance.render();
+  }
 };
 
-setTimeout(function(){
-  const t=document.createElement('script');
-  t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+setTimeout(function () {
+  const t = document.createElement('script');
+  t.src =
+    "https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+
   document.body.appendChild(t);
 });
+
 </script>
 
 </body>
